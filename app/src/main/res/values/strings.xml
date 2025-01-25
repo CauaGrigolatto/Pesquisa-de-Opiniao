@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Pesquisa De Opinião</string>
+    <string name="main_title">Pesquisa de Opinião</string>
+    <string name="main_subtitle">Responda às perguntas referentes à qualidade de ensino do IFSP</string>
+    <string name="start_survey">Começar pesquisa</string>
+    <string name="check_vote">Checar voto</string>
+    <string name="end_survey">Encerrar pesquisa</string>
+</resources>
