@@ -5,4 +5,12 @@
     <string name="start_survey">Começar pesquisa</string>
     <string name="check_vote">Checar voto</string>
     <string name="end_survey">Encerrar pesquisa</string>
+    <string name="register">Registrar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="great">Ótimo</string>
+    <string name="good">Bom</string>
+    <string name="regular">Regular</string>
+    <string name="bad">Ruim</string>
+    <string name="voting_hint">Escolha uma das opções abaixo</string>
+    <string name="vote">Votar</string>
 </resources>
