@@ -1,18 +1,13 @@
-package br.edu.ifsp.dmo.pesquisa.ui.code
+package br.edu.ifsp.dmo.pesquisa.ui.codeDisplay
 
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import br.edu.ifsp.dmo.pesquisa.R
 import br.edu.ifsp.dmo.pesquisa.databinding.ActivityCodeDisplayBinding
 import br.edu.ifsp.dmo.pesquisa.ui.main.MainActivity
-import br.edu.ifsp.dmo.pesquisa.ui.utils.ActivityUtils
 
 class CodeDisplay : AppCompatActivity() {
     private lateinit var binding: ActivityCodeDisplayBinding

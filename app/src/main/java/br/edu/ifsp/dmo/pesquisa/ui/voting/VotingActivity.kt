@@ -6,7 +6,7 @@ import android.widget.RadioButton
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import br.edu.ifsp.dmo.pesquisa.databinding.ActivityVotingBinding
-import br.edu.ifsp.dmo.pesquisa.ui.code.CodeDisplay
+import br.edu.ifsp.dmo.pesquisa.ui.codeDisplay.CodeDisplay
 import br.edu.ifsp.dmo.pesquisa.ui.main.MainActivity
 import br.edu.ifsp.dmo.pesquisa.ui.utils.ActivityUtils
 import java.util.UUID
