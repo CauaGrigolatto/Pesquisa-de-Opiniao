@@ -11,11 +11,12 @@ class RegistrationViewModel(application: Application) : AndroidViewModel(applica
     fun register(student: Student) {
         val registeredStudent = studentDAO.getById(student.id)
 
+        // o estudante pode estar cadastrado, mas sem ter votado.
         if (registeredStudent == null) {
             studentDAO.insert(student)
         }
-        else if (student.voted) {
-            throw Exception("${student.fullName} já votou")
+        else if (registeredStudent.voted) {
+            throw Exception("Este prontuário já foi utilizado para votar.")
         }
     }
 }

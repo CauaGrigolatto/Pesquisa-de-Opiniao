@@ -4,8 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
-import br.edu.ifsp.dmo.pesquisa.data.model.database.Contract
 import br.edu.ifsp.dmo.pesquisa.data.model.entity.Student
 import br.edu.ifsp.dmo.pesquisa.databinding.ActivityRegistrationBinding
 import br.edu.ifsp.dmo.pesquisa.ui.main.MainActivity
@@ -34,8 +32,12 @@ class RegistrationActivity : AppCompatActivity() {
         val student = Student(id, fullName)
 
         try {
+            if (id.isBlank() || fullName.isBlank()) {
+                throw Exception("Por favor, preencha todos os campos.")
+            }
+
             viewModel.register(student)
-            openVotingScreen(id)
+            openVotingScreen(student.id)
         }
         catch(e: Exception) {
             ActivityUtils.shortToast(this, e.message.toString())
@@ -44,7 +46,7 @@ class RegistrationActivity : AppCompatActivity() {
 
     private fun openVotingScreen(id: String) {
         val intent = Intent(this, VotingActivity::class.java)
-        intent.putExtra("userId", id)
+        intent.putExtra("studentId", id)
         startActivity(intent)
         finish()
     }

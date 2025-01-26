@@ -61,4 +61,23 @@ class StudentDAO(context: Context) {
             return null
         }
     }
+
+    fun update(student: Student): Boolean {
+        val values = ContentValues().apply {
+            put(Contract.Student.COLUMN_VOTED, student.voted)
+        }
+
+        val db = dbManager.writableDatabase
+
+        val rowsAffected = db.update(
+            Contract.Student.TABLE_NAME,
+            values,
+            "student_id = ?",
+            arrayOf(student.id)
+        )
+
+        db.close()
+
+        return rowsAffected > 0
+    }
 }
