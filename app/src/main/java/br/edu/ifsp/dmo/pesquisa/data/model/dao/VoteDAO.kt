@@ -4,7 +4,6 @@ import android.content.ContentValues
 import android.content.Context
 import br.edu.ifsp.dmo.pesquisa.data.model.database.Contract
 import br.edu.ifsp.dmo.pesquisa.data.model.database.Manager
-import br.edu.ifsp.dmo.pesquisa.data.model.entity.Student
 import br.edu.ifsp.dmo.pesquisa.data.model.entity.Vote
 import java.util.UUID
 
@@ -59,6 +58,26 @@ class VoteDAO(context: Context) {
             println("VoteDAO: Erro ao recuperar por ID")
             e.printStackTrace()
             return null
+        }
+    }
+
+    fun countValuesOf(value: String): Int {
+        try {
+            val db = dbManager.readableDatabase
+            val cursor = db.rawQuery(Contract.Vote.SQL_COUNT_VALUE, arrayOf(value))
+            var count = 0
+
+            if (cursor.moveToFirst()) {
+                count = cursor.getInt(0)
+            }
+
+            cursor.close()
+            return count
+        }
+        catch (e: Exception) {
+            println("VoteDAO: Erro ao recuperar por ID")
+            e.printStackTrace()
+            return 0
         }
     }
 }
