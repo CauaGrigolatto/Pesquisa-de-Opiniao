@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/text_view_successful_vote"
+        android:text="@string/successful_vote"
+        android:textStyle="bold"
+        android:textSize="30sp"
+        android:textAlignment="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/guideline_horizontal_33"
+        />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_horizontal_33"
+        app:layout_constraintGuide_percent="0.33"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" />
+
+    <TextView
+        android:id="@+id/text_view_copy_hint"
+        android:text="@string/copy_hint"
+        android:textSize="25sp"
+        android:textAlignment="center"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_33"
+        />
+
+    <ImageView
+        android:id="@+id/image_view_copy"
+        android:src="@drawable/ic_copy"
+        android:layout_width="40dp"
+        android:layout_marginTop="60dp"
+        app:layout_constraintStart_toStartOf="@id/text_view_copy_hint"
+        app:layout_constraintTop_toBottomOf="@id/text_view_copy_hint"
+        android:layout_height="40dp" />
+
+    <TextView
+        android:id="@+id/text_view_code"
+        android:text="1234-5678-9012-3456-7890"
+        android:layout_marginStart="10dp"
+        android:textSize="25sp"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/image_view_copy"
+        app:layout_constraintTop_toTopOf="@id/image_view_copy"
+        app:layout_constraintBottom_toBottomOf="@id/image_view_copy"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <Button
+        android:id="@+id/button_finalize"
+        android:text="@string/finalize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="40dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

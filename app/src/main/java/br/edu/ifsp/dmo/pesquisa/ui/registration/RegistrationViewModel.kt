@@ -15,8 +15,12 @@ class RegistrationViewModel(application: Application) : AndroidViewModel(applica
         if (registeredStudent == null) {
             studentDAO.insert(student)
         }
-        else if (registeredStudent.voted) {
-            throw Exception("Este prontuário já foi utilizado para votar.")
+        else {
+            if (registeredStudent.voted) {
+                throw Exception("Este prontuário já foi utilizado para votar.")
+            }
+
+            studentDAO.update(student)
         }
     }
 }

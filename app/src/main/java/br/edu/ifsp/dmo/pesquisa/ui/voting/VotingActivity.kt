@@ -6,8 +6,10 @@ import android.widget.RadioButton
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import br.edu.ifsp.dmo.pesquisa.databinding.ActivityVotingBinding
+import br.edu.ifsp.dmo.pesquisa.ui.code.CodeDisplay
 import br.edu.ifsp.dmo.pesquisa.ui.main.MainActivity
 import br.edu.ifsp.dmo.pesquisa.ui.utils.ActivityUtils
+import java.util.UUID
 
 class VotingActivity : AppCompatActivity() {
     private lateinit var binding: ActivityVotingBinding
@@ -31,10 +33,10 @@ class VotingActivity : AppCompatActivity() {
             val value = getVoteValue()
 
             viewModel.setVoted(id)
-            viewModel.registerVote(value)
+            val voteCode = viewModel.registerVote(value)
 
             ActivityUtils.shortToast(this,"Voto realizado com sucesso!")
-            openHomeScreen()
+            openCodeDisplayScreen(voteCode)
         }
         catch(e: Exception) {
             ActivityUtils.shortToast(this, e.message.toString())
@@ -55,6 +57,13 @@ class VotingActivity : AppCompatActivity() {
     private fun getStudentId(): String {
         val id = intent.extras?.getString("studentId") as String
         return id ?: throw Exception("Desculpe, não conseguimos identificar seu prontuário. Tente novamente.")
+    }
+
+    private fun openCodeDisplayScreen(code: UUID) {
+        val intent = Intent(this, CodeDisplay::class.java)
+        intent.putExtra("code", code)
+        startActivity(intent)
+        finish()
     }
 
     private fun openHomeScreen() {

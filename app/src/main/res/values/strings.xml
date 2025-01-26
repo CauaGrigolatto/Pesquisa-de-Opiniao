@@ -13,4 +13,7 @@
     <string name="bad">Ruim</string>
     <string name="voting_hint">Escolha uma das opções abaixo</string>
     <string name="vote">Votar</string>
+    <string name="copy_hint">Para rastreá-lo, copie o código abaixo:</string>
+    <string name="successful_vote">Seu voto foi registrado com sucesso!</string>
+    <string name="finalize">Finalizar</string>
 </resources>

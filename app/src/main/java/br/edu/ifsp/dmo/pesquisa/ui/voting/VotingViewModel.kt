@@ -1,7 +1,6 @@
 package br.edu.ifsp.dmo.pesquisa.ui.voting
 
 import android.app.Application
-import android.health.connect.datatypes.units.Length
 import androidx.lifecycle.AndroidViewModel
 import br.edu.ifsp.dmo.pesquisa.data.model.dao.StudentDAO
 import br.edu.ifsp.dmo.pesquisa.data.model.dao.VoteDAO

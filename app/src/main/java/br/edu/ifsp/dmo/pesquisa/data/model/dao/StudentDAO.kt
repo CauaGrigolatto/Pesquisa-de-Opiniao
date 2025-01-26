@@ -21,7 +21,6 @@ class StudentDAO(context: Context) {
             return ! db?.insert(Contract.Student.TABLE_NAME, null, values)!!.equals(-1)
         }
         catch (e: Exception) {
-            println("StudentDAO: Erro ao inserir")
             e.printStackTrace()
             return false
         }
@@ -56,7 +55,6 @@ class StudentDAO(context: Context) {
             return student
         }
         catch (e: Exception) {
-            println("StudentDAO: Erro ao recuperar por ID")
             e.printStackTrace()
             return null
         }
@@ -64,6 +62,7 @@ class StudentDAO(context: Context) {
 
     fun update(student: Student): Boolean {
         val values = ContentValues().apply {
+            put(Contract.Student.COLUMN_FULL_NAME, student.fullName)
             put(Contract.Student.COLUMN_VOTED, student.voted)
         }
 
