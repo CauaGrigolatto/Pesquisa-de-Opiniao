@@ -1,15 +1,9 @@
 package br.edu.ifsp.dmo.pesquisa.ui.result
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
-import androidx.activity.result.ActivityResult
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import br.edu.ifsp.dmo.pesquisa.R
 import br.edu.ifsp.dmo.pesquisa.databinding.ActivityResultBinding
-import br.edu.ifsp.dmo.pesquisa.ui.utils.ActivityUtils
 
 class ResultActivity : AppCompatActivity() {
     private lateinit var binding: ActivityResultBinding
@@ -28,9 +22,10 @@ class ResultActivity : AppCompatActivity() {
     }
 
     private fun setVotesResult() {
-        binding.textViewGreatVotes.text = viewModel.getGreatVotes().toString()
-        binding.textViewGoodVotes.text = viewModel.getGoodVotes().toString()
-        binding.textViewRegularVotes.text = viewModel.getRegularVotes().toString()
-        binding.textViewBadVotes.text = viewModel.getBadVotes().toString()
+        binding.textViewGreatVotes.text = viewModel.getCountGreatVotes().toString()
+        binding.textViewGoodVotes.text = viewModel.getCountGoodVotes().toString()
+        binding.textViewRegularVotes.text = viewModel.getCountRegularVotes().toString()
+        binding.textViewBadVotes.text = viewModel.getCountBadVotes().toString()
+        binding.textViewTotalVotes.text = viewModel.getCountAll().toString()
     }
 }

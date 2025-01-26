@@ -23,4 +23,5 @@
     <string name="great_votes">Votos para \'Ótimo\':</string>
     <string name="bad_votes">Votos para \'Ruim\':</string>
     <string name="exit">Sair</string>
+    <string name="total_votes">Votos totais:</string>
 </resources>

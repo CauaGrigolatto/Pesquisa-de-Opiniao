@@ -75,7 +75,27 @@ class VoteDAO(context: Context) {
             return count
         }
         catch (e: Exception) {
-            println("VoteDAO: Erro ao recuperar por ID")
+            println("VoteDAO: Erro ao contar por valor")
+            e.printStackTrace()
+            return 0
+        }
+    }
+
+    fun countAll(): Int {
+        try {
+            val db = dbManager.readableDatabase
+            val cursor = db.rawQuery(Contract.Vote.SQL_COUNT, null)
+            var count = 0
+
+            if (cursor.moveToFirst()) {
+                count = cursor.getInt(0)
+            }
+
+            cursor.close()
+            return count
+        }
+        catch (e: Exception) {
+            println("VoteDAO: Erro ao contar todos")
             e.printStackTrace()
             return 0
         }

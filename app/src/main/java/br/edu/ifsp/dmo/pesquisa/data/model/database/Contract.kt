@@ -43,6 +43,10 @@ object Contract {
             DROP TABLE IF EXISTS ${TABLE_NAME}
         """
 
+        const val SQL_COUNT = """
+            SELECT COUNT(${COLUMN_ID}) FROM ${TABLE_NAME}
+        """
+
         const val SQL_COUNT_VALUE = """
             SELECT COUNT(${COLUMN_ID}) FROM ${TABLE_NAME} WHERE ${COLUMN_VALUE} = ?
         """

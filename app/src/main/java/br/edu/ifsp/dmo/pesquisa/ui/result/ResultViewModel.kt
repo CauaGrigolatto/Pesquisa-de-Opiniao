@@ -7,8 +7,9 @@ import br.edu.ifsp.dmo.pesquisa.data.model.dao.VoteDAO
 class ResultViewModel(application: Application) : AndroidViewModel(application) {
     private val voteDAO = VoteDAO(application)
 
-    fun getGreatVotes() = voteDAO.countValuesOf("Ótimo")
-    fun getGoodVotes() = voteDAO.countValuesOf("Bom")
-    fun getRegularVotes() = voteDAO.countValuesOf("Regular")
-    fun getBadVotes() = voteDAO.countValuesOf("Ruim")
+    fun getCountAll() = voteDAO.countAll()
+    fun getCountGreatVotes() = voteDAO.countValuesOf("Ótimo")
+    fun getCountGoodVotes() = voteDAO.countValuesOf("Bom")
+    fun getCountRegularVotes() = voteDAO.countValuesOf("Regular")
+    fun getCountBadVotes() = voteDAO.countValuesOf("Ruim")
 }
