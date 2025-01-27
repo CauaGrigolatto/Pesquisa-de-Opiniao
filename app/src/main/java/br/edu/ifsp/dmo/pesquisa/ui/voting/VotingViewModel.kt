@@ -2,30 +2,34 @@ package br.edu.ifsp.dmo.pesquisa.ui.voting
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import br.edu.ifsp.dmo.pesquisa.data.model.dao.StudentDAO
-import br.edu.ifsp.dmo.pesquisa.data.model.dao.VoteDAO
-import br.edu.ifsp.dmo.pesquisa.data.model.entity.Vote
+import br.edu.ifsp.dmo.pesquisa.data.model.repository.StudentRepository
+import br.edu.ifsp.dmo.pesquisa.data.model.repository.VoteRepository
 import java.util.UUID
 
 class VotingViewModel(application: Application) : AndroidViewModel(application) {
-    private val studentDAO = StudentDAO(application)
-    private val voteDAO = VoteDAO(application)
+    private val studentRepository = StudentRepository(application)
+    private val voteRepository = VoteRepository(application)
 
     fun registerVote(value: String): UUID {
-        val vote = Vote(UUID.randomUUID(), value)
-        voteDAO.insert(vote)
-        return vote.id
+        try {
+            val vote = voteRepository.insert(value)
+
+            if (vote.id == null) throw Exception()
+
+            return vote.id!!
+        }
+        catch(e: Exception) {
+            throw Exception("Erro ao registrar voto. Por favor, tente novamente mais tarde.")
+        }
     }
 
     fun setVoted(id: String) {
-        val student = studentDAO.getById(id)
-
-        if (student != null) {
-            student.voted = true
-            studentDAO.update(student)
+        try {
+            val student = studentRepository.getById(id)
+            studentRepository.setVoted(student)
         }
-        else {
-            throw Exception("Erro ao registrar voto. Por favor, insira seus dados e tente novamente.")
+        catch (e: Exception) {
+            throw e
         }
     }
 }

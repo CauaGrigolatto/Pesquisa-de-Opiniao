@@ -2,14 +2,14 @@ package br.edu.ifsp.dmo.pesquisa.ui.result
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import br.edu.ifsp.dmo.pesquisa.data.model.dao.VoteDAO
+import br.edu.ifsp.dmo.pesquisa.data.model.repository.VoteRepository
 
 class ResultViewModel(application: Application) : AndroidViewModel(application) {
-    private val voteDAO = VoteDAO(application)
+    private val voteRepository = VoteRepository(application)
 
-    fun getCountAll() = voteDAO.countAll()
-    fun getCountGreatVotes() = voteDAO.countValuesOf("Ótimo")
-    fun getCountGoodVotes() = voteDAO.countValuesOf("Bom")
-    fun getCountRegularVotes() = voteDAO.countValuesOf("Regular")
-    fun getCountBadVotes() = voteDAO.countValuesOf("Ruim")
+    fun getCountAll() = voteRepository.countAll()
+    fun getCountGreatVotes() = voteRepository.countValuesOf("Ótimo")
+    fun getCountGoodVotes() = voteRepository.countValuesOf("Bom")
+    fun getCountRegularVotes() = voteRepository.countValuesOf("Regular")
+    fun getCountBadVotes() = voteRepository.countValuesOf("Ruim")
 }

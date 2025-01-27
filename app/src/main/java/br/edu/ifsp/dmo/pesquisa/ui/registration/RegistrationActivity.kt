@@ -36,7 +36,7 @@ class RegistrationActivity : AppCompatActivity() {
                 throw Exception("Por favor, preencha todos os campos.")
             }
 
-            viewModel.register(student)
+            viewModel.registerStudent(student)
             openVotingScreen(student.id)
         }
         catch(e: Exception) {

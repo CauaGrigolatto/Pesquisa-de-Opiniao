@@ -5,7 +5,7 @@ import android.provider.BaseColumns
 object Contract {
     object Database {
         const val DATABASE_NAME = "opinion_survey"
-        const val DATABASE_VERSION = 2
+        const val DATABASE_VERSION = 3
     }
 
     object Student : BaseColumns {
@@ -24,6 +24,10 @@ object Contract {
 
         const val SQL_DROP = """
             DROP TABLE IF EXISTS ${TABLE_NAME}
+        """
+
+        const val SQL_WHERE_ID_EQUALS = """
+            ${COLUMN_ID} = ?
         """
     }
 
@@ -49,6 +53,10 @@ object Contract {
 
         const val SQL_COUNT_VALUE = """
             SELECT COUNT(${COLUMN_ID}) FROM ${TABLE_NAME} WHERE ${COLUMN_VALUE} = ?
+        """
+
+        const val SQL_WHERE_ID_EQUALS = """
+            ${COLUMN_ID} = ?
         """
     }
 }

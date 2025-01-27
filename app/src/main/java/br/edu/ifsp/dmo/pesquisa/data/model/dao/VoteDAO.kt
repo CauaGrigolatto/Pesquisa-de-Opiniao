@@ -21,13 +21,12 @@ class VoteDAO(context: Context) {
             return ! db?.insert(Contract.Vote.TABLE_NAME, null, values)!!.equals(-1)
         }
         catch (e: Exception) {
-            println("VoteDAO: Erro ao inserir")
-            e.printStackTrace()
-            return false
+            println("VoteDAO: erro ao inserir: $vote.")
+            throw e
         }
     }
 
-    fun getById(id: UUID): Vote? {
+    fun getByCode(id: UUID): Vote? {
         try {
             val columns = arrayOf(
                 Contract.Vote.COLUMN_ID,
@@ -38,7 +37,7 @@ class VoteDAO(context: Context) {
             val cursor = db.query(
                 Contract.Vote.TABLE_NAME,
                 columns,
-                "${Contract.Vote.COLUMN_ID} = ?",
+                Contract.Vote.SQL_WHERE_ID_EQUALS,
                 arrayOf(id.toString()),
                 null,
                 null,
@@ -55,9 +54,8 @@ class VoteDAO(context: Context) {
             return vote
         }
         catch (e: Exception) {
-            println("VoteDAO: Erro ao recuperar por ID")
-            e.printStackTrace()
-            return null
+            println("VoteDAO: erro ao recuperar por ID: $id.")
+            throw e
         }
     }
 
@@ -75,9 +73,8 @@ class VoteDAO(context: Context) {
             return count
         }
         catch (e: Exception) {
-            println("VoteDAO: Erro ao contar por valor")
-            e.printStackTrace()
-            return 0
+            println("VoteDAO: erro ao contar por valor: $value.")
+            throw e
         }
     }
 
@@ -95,9 +92,8 @@ class VoteDAO(context: Context) {
             return count
         }
         catch (e: Exception) {
-            println("VoteDAO: Erro ao contar todos")
-            e.printStackTrace()
-            return 0
+            println("VoteDAO: erro ao contar todos.")
+            throw e
         }
     }
 }

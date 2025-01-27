@@ -31,11 +31,8 @@ class VotingActivity : AppCompatActivity() {
         try {
             val id = getStudentId()
             val value = getVoteValue()
-
-            viewModel.setVoted(id)
             val voteCode = viewModel.registerVote(value)
-
-            ActivityUtils.shortToast(this,"Voto realizado com sucesso!")
+            viewModel.setVoted(id)
             openCodeDisplayScreen(voteCode)
         }
         catch(e: Exception) {
@@ -44,19 +41,29 @@ class VotingActivity : AppCompatActivity() {
     }
 
     private fun getVoteValue(): String {
-        val selectedId = binding.radioGroup.checkedRadioButtonId
+        try {
+            val selectedId = binding.radioGroup.checkedRadioButtonId
 
-        if (selectedId == -1) {
-            throw Exception("Por favor, selecione um valor.")
+            if (selectedId == -1) {
+                throw Exception("Por favor, selecione um valor.")
+            }
+
+            val selectedRadioButton = binding.root.findViewById<RadioButton>(selectedId)
+            return selectedRadioButton.text.toString()
         }
-
-        val selectedRadioButton = binding.root.findViewById<RadioButton>(selectedId)
-        return selectedRadioButton.text.toString()
+        catch(e: Exception) {
+            throw e
+        }
     }
 
     private fun getStudentId(): String {
-        val id = intent.extras?.getString("studentId") as String
-        return id ?: throw Exception("Desculpe, não conseguimos identificar seu prontuário. Tente novamente.")
+        try {
+            val id = intent.extras?.getString("studentId") as String
+            return id
+        }
+        catch(e: Exception) {
+            throw e
+        }
     }
 
     private fun openCodeDisplayScreen(code: UUID) {

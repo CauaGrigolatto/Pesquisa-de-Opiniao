@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import br.edu.ifsp.dmo.pesquisa.databinding.ActivityResultBinding
+import br.edu.ifsp.dmo.pesquisa.ui.utils.ActivityUtils
 
 class ResultActivity : AppCompatActivity() {
     private lateinit var binding: ActivityResultBinding
@@ -22,10 +23,15 @@ class ResultActivity : AppCompatActivity() {
     }
 
     private fun setVotesResult() {
-        binding.textViewGreatVotes.text = viewModel.getCountGreatVotes().toString()
-        binding.textViewGoodVotes.text = viewModel.getCountGoodVotes().toString()
-        binding.textViewRegularVotes.text = viewModel.getCountRegularVotes().toString()
-        binding.textViewBadVotes.text = viewModel.getCountBadVotes().toString()
-        binding.textViewTotalVotes.text = viewModel.getCountAll().toString()
+        try {
+            binding.textViewGreatVotes.text = viewModel.getCountGreatVotes().toString()
+            binding.textViewGoodVotes.text = viewModel.getCountGoodVotes().toString()
+            binding.textViewRegularVotes.text = viewModel.getCountRegularVotes().toString()
+            binding.textViewBadVotes.text = viewModel.getCountBadVotes().toString()
+            binding.textViewTotalVotes.text = viewModel.getCountAll().toString()
+        }
+        catch(e: Exception) {
+            ActivityUtils.shortToast(this, e.message.toString())
+        }
     }
 }

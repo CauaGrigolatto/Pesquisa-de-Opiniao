@@ -2,25 +2,18 @@ package br.edu.ifsp.dmo.pesquisa.ui.registration
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import br.edu.ifsp.dmo.pesquisa.data.model.dao.StudentDAO
 import br.edu.ifsp.dmo.pesquisa.data.model.entity.Student
+import br.edu.ifsp.dmo.pesquisa.data.model.repository.StudentRepository
 
 class RegistrationViewModel(application: Application) : AndroidViewModel(application) {
-    private val studentDAO = StudentDAO(application)
+    private val studentRepository = StudentRepository(application)
 
-    fun register(student: Student) {
-        val registeredStudent = studentDAO.getById(student.id)
-
-        // o estudante pode estar cadastrado, mas sem ter votado.
-        if (registeredStudent == null) {
-            studentDAO.insert(student)
+    fun registerStudent(student: Student) {
+        try {
+            studentRepository.save(student)
         }
-        else {
-            if (registeredStudent.voted) {
-                throw Exception("Este prontuário já foi utilizado para votar.")
-            }
-
-            studentDAO.update(student)
+        catch(e: Exception) {
+            throw e
         }
     }
 }

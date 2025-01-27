@@ -21,8 +21,8 @@ class StudentDAO(context: Context) {
             return ! db?.insert(Contract.Student.TABLE_NAME, null, values)!!.equals(-1)
         }
         catch (e: Exception) {
-            e.printStackTrace()
-            return false
+            println("StudentDAO: erro ao inserir: $student.")
+            throw e
         }
     }
 
@@ -38,8 +38,8 @@ class StudentDAO(context: Context) {
             val cursor = db.query(
                 Contract.Student.TABLE_NAME,
                 columns,
-                "${Contract.Student.COLUMN_ID} = ?",
-                arrayOf(id.toString()),
+                Contract.Student.SQL_WHERE_ID_EQUALS,
+                arrayOf(id),
                 null,
                 null,
                 null
@@ -55,28 +55,34 @@ class StudentDAO(context: Context) {
             return student
         }
         catch (e: Exception) {
-            e.printStackTrace()
-            return null
+            println("StudentDAO: erro ao obter por id: $id.")
+            throw e
         }
     }
 
     fun update(student: Student): Boolean {
-        val values = ContentValues().apply {
-            put(Contract.Student.COLUMN_FULL_NAME, student.fullName)
-            put(Contract.Student.COLUMN_VOTED, student.voted)
+        try {
+            val values = ContentValues().apply {
+                put(Contract.Student.COLUMN_FULL_NAME, student.fullName)
+                put(Contract.Student.COLUMN_VOTED, student.voted)
+            }
+
+            val db = dbManager.writableDatabase
+
+            val rowsAffected = db.update(
+                Contract.Student.TABLE_NAME,
+                values,
+                Contract.Student.SQL_WHERE_ID_EQUALS,
+                arrayOf(student.id)
+            )
+
+            db.close()
+
+            return rowsAffected > 0
         }
-
-        val db = dbManager.writableDatabase
-
-        val rowsAffected = db.update(
-            Contract.Student.TABLE_NAME,
-            values,
-            "student_id = ?",
-            arrayOf(student.id)
-        )
-
-        db.close()
-
-        return rowsAffected > 0
+        catch(e: Exception) {
+            println("StudentDAO: erro ao atualizar estudante: $student.")
+            throw e
+        }
     }
 }
