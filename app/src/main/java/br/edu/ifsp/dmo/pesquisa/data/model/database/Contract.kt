@@ -5,7 +5,7 @@ import android.provider.BaseColumns
 object Contract {
     object Database {
         const val DATABASE_NAME = "opinion_survey"
-        const val DATABASE_VERSION = 3
+        const val DATABASE_VERSION = 5
     }
 
     object Student : BaseColumns {
