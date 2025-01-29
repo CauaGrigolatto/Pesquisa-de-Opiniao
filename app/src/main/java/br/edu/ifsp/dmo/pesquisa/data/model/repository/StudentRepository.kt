@@ -8,12 +8,7 @@ class StudentRepository(context: Context) {
     private val studentDAO = StudentDAO(context)
 
     fun getById(id: String): Student? {
-        val formattedId = formatId(id)
-        return studentDAO.getById(formattedId)
-    }
-
-    private fun formatId(id: String): String {
-        return id.replace("\\s".toRegex(), "")
+        return studentDAO.getById(id)
     }
 
     fun save(student: Student) {
